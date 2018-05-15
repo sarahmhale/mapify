@@ -36,6 +36,10 @@ class App extends Component {
     console.log(this.state);
     return (
       <div className="App">
+        <header className="App-header">
+
+          <h1 className="App-title">Welcome to Mapify</h1>
+        </header>
         <MapWithAMarker
           googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places"
           markers={[{ lat: -34.397, lng: 150.644 }]}
@@ -44,11 +48,7 @@ class App extends Component {
           mapElement={<div style={{ height: `100%` }} />}
 
         />
-
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
+        
         <div className="App-intro">
 
           <form onSubmit={this.handleSubmit}>
