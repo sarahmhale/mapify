@@ -59,6 +59,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
+          <img className="logo" src={require('./mapify_logo_notext.png')} />
           <h1 className="App-title">Welcome to Mapify</h1>
         </header>
         <MapWithAMarker
