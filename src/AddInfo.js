@@ -21,8 +21,7 @@ export class AddInfo extends Component {
     return (
       <InfoWindow >
         <form onSubmit={(event)=>{
-          event.preventDefault();
-
+          event.preventDefault()
           this.props.handleSubmit(this.state.searchedSong)
           this.props.setSong(this.state.searchedSong)
           this.props.handleToggleOpen()

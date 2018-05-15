@@ -46,7 +46,6 @@ export class Markers extends Component {
         onClick={() => this.handleToggleOpen()}
       >
 
-
         {this.props.marker.song.length === 0?
           <AddInfo
             handleToggleOpen={this.handleToggleOpen}

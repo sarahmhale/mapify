@@ -19,9 +19,10 @@ class App extends Component {
 
 
   handleSubmit(song) {
-    console.log(song)
+
     window.SpotifyPlayer.searchTracks(song).then(res => {
       if (!res.tracks.items[0]) return;
+      song =res.tracks.items[0].name
       window.SpotifyPlayer.playTrack("spotify:track:" + res.tracks.items[0].id)
     });
 
@@ -29,7 +30,7 @@ class App extends Component {
   }
 
   pauseSong() {
-    window.SpotifyPlayer.WebPlaybackSDK.pause().then(()=>{
+    window.SpotifyPlayer.WebPlaybackSDK.pause().then(() => {
       console.log("paused")
     })
   }
@@ -51,7 +52,7 @@ class App extends Component {
   deleteMarker(index) {
     let value = this.state.markers.findIndex(marker => marker.index == index)
     this.setState((prevState) => ({
-      markers: [...prevState.markers.slice(0,value), ...prevState.markers.slice(value+1)]
+      markers: [...prevState.markers.slice(0, value), ...prevState.markers.slice(value + 1)]
     }))
     this.pauseSong()
   }
