@@ -23,7 +23,6 @@ class App extends Component {
     this.setState({ searchedSong: event.target.value });
   }
   playSong() {
-    console.log("state"+this.state)
     window.SpotifyPlayer.searchTracks(this.state.searchedSong).then(res =>
       window.SpotifyPlayer.playTrack("spotify:track:" + res.tracks.items[0].id));
     //  window.SpotifyPlayer.playTrack("spotify:track:3Q16RW1GJBjmdsNBd6AsH9");
@@ -33,22 +32,21 @@ class App extends Component {
     window.SpotifyPlayer.WebPlaybackSDK.pause()
   }
   render() {
-    console.log(this.state);
+
     return (
       <div className="App">
         <header className="App-header">
-
           <h1 className="App-title">Welcome to Mapify</h1>
         </header>
         <MapWithAMarker
-          googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places"
+          googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=gometry,drawing,places"
           markers={[{ lat: -34.397, lng: 150.644 }]}
           loadingElement={<div style={{ height: `100%` }} />}
           containerElement={<div style={{ height: `400px` }} />}
           mapElement={<div style={{ height: `100%` }} />}
 
         />
-        
+
         <div className="App-intro">
 
           <form onSubmit={this.handleSubmit}>
