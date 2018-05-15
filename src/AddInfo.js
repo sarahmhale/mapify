@@ -25,7 +25,7 @@ export class AddInfo extends Component {
 
           this.props.handleSubmit(this.state.searchedSong)
           this.props.setSong(this.state.searchedSong)
-          this.props.handleToggleClose()
+          this.props.handleToggleOpen()
         }
 
 

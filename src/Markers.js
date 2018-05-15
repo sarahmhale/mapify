@@ -49,7 +49,7 @@ export class Markers extends Component {
 
         {this.props.marker.song.length === 0?
           <AddInfo
-            handleToggleClose={this.handleToggleClose}
+            handleToggleOpen={this.handleToggleOpen}
             setSong={this.setSong}
             handleSubmit={this.props.handleSubmit}
             handleChange={this.props.handleChange}
