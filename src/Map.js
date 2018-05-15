@@ -3,20 +3,25 @@ import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
-  Marker,
+
 } from "react-google-maps";
+
+import {Markers} from './Markers'
+
 
 export const MapWithAMarker = withScriptjs(withGoogleMap(props =>
   <GoogleMap
     defaultZoom={8}
     defaultCenter={{ lat: -34.397, lng: 150.644 }}
+    onClick={(e) => props.handleClick(e)}
   >
     {props.markers.map(marker => {
-      if(marker)
+
       return (
-        <Marker
-          key={marker.id}
-          position={{ lat: marker.lat, lng: marker.lng }}
+        <Markers
+          handleSubmit={props.handleSubmit}
+          handleChange={props.handleChange}
+          marker={marker}
         />
       )
     })}
