@@ -20,7 +20,7 @@ class App extends Component {
   handleSubmit(song) {
     console.log(song)
     window.SpotifyPlayer.searchTracks(song).then(res => {
-      console.log("spotify:track:" + res.tracks.items[0].id)
+    if(!res.tracks.items[0]) return;
       window.SpotifyPlayer.playTrack("spotify:track:" + res.tracks.items[0].id)
     });
 
@@ -58,9 +58,8 @@ class App extends Component {
           googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=gometry,drawing,places"
           markers={this.state.markers}
           loadingElement={<div style={{ height: `100%` }} />}
-          containerElement={<div style={{ height: `400px` }} />}
+          containerElement={<div style={{ height: `80vh` }} />}
           mapElement={<div style={{ height: `100%` }} />}
-
         />
 
       </div>
@@ -72,4 +71,4 @@ if (window.SpotifyPlayer.isAccessToken() === false) {
   window.SpotifyPlayer.sendToLogin();
 }
 
-export default App;
+export default App
