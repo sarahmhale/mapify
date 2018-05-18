@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import {
   Marker,
   InfoWindow
-
 } from "react-google-maps";
 import './App.css';
 import { Mutation } from "react-apollo";
@@ -17,8 +16,6 @@ export class Markers extends Component {
     this.state = {
       isOpen: false
     }
-    this.setSong = this.setSong.bind(this);
-
   }
 
   handleToggleOpen = () => {
@@ -40,11 +37,9 @@ export class Markers extends Component {
 
   }
 
-
   pauseSong() {
     window.SpotifyPlayer.WebPlaybackSDK.pause()
   }
-
 
 
   handleToggleClose = () => {
@@ -53,9 +48,7 @@ export class Markers extends Component {
     });
     this.pauseSong()
   }
-  setSong(songName) {
-    this.props.marker.song = songName
-  }
+
 
   render() {
     return (
@@ -68,7 +61,6 @@ export class Markers extends Component {
           cache.writeQuery({query: GET_MARKERS, data  })
         }}>
         {(deleteMarker, { data,error }) => {
-
 
           return(
             <Marker
