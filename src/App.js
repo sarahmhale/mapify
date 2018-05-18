@@ -10,9 +10,8 @@ class App extends Component {
       searchedSong: '',
       index: 1
     }
-    // this.handleChange = this.handleChange.bind(this);
+
     this.playSong = this.playSong.bind(this);
-    // this.handleClick = this.handleClick.bind(this);
     this.deleteMarker = this.deleteMarker.bind(this)
   }
 
@@ -24,28 +23,11 @@ class App extends Component {
       window.SpotifyPlayer.playTrack("spotify:track:" + res.tracks.items[0].id)
     });
 
-
   }
 
   pauseSong() {
-    window.SpotifyPlayer.WebPlaybackSDK.pause().then(() => {
-      console.log("paused")
-    })
+    window.SpotifyPlayer.WebPlaybackSDK.pause()
   }
-
-  // handleClick(event) {
-  //   let lat = event.latLng.lat()
-  //   let lng = event.latLng.lng()
-  //
-  //   this.setState({
-  //     markers: [...this.state.markers, { lat: lat, lng: lng, song: '', index: this.state.index }]
-  //   })
-  //   this.setState({ index: this.state.index + 1 })
-  // }
-
-  // handleChange(event) {
-  //   this.setState({ searchedSong: event.target.value });
-  // }
 
   deleteMarker(index) {
     console.log("delete marker")
@@ -65,7 +47,7 @@ class App extends Component {
         </header>
         <MapWithAMarker
           deleteMarker={this.deleteMarker}
-          
+
           // handleChange={this.handleChange}
           // handleClick={this.handleClick}
           playSong={this.playSong}

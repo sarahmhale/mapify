@@ -24,6 +24,8 @@ class Map extends Component {
       creatingMarker: ''
 
     }
+    this.createMarker = this.createMarker.bind(this)
+    this.doneCreatingMarker = this.doneCreatingMarker.bind(this)
   }
 
 
@@ -73,6 +75,7 @@ class Map extends Component {
     })
   }
   renderMarker(data) {
+
     if (!data || !data.markers) {
       return;
     } else {
@@ -96,6 +99,10 @@ class Map extends Component {
       createMarker: true
     })
   }
+  doneCreatingMarker() {
+    this.setState({ createMarker: false })
+  }
+
   render() {
     return (
       <Query
@@ -109,7 +116,7 @@ class Map extends Component {
               defaultZoom={8}
               defaultCenter={{ lat: -34.397, lng: 150.644 }}
               center={this.state.center}
-              onClick={(e) => this.createMarker(e)}
+              onClick={(e)=>this.createMarker(e)}
               onBoundsChanged={this.state.onBoundsChanged}
             >
               <SearchBox
@@ -122,6 +129,7 @@ class Map extends Component {
               </SearchBox>
               {this.state.createMarker ?
                 <AddInfo
+                  doneCreatingMarker={this.doneCreatingMarker}
                   lat={this.state.lat}
                   lng={this.state.lng}
                 />: null}

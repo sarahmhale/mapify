@@ -6,6 +6,8 @@ import {
 
 } from "react-google-maps";
 import './App.css';
+import { Mutation } from "react-apollo";
+import { DELETE_MARKER } from './api/queries'
 
 export class Markers extends Component {
 
@@ -39,26 +41,30 @@ export class Markers extends Component {
 
   render() {
     return (
+      <Mutation mutation={DELETE_MARKER}>
+        {(deleteMarker, { data,error }) => {
+          console.log(this.props.marker.id)
+          return(
+            <Marker
+              key={this.props.marker.index}
+              position={{ lat: this.props.marker.latitude, lng: this.props.marker.longitude}}
+              onClick={() => this.handleToggleOpen()}
+            >
 
-      <Marker
-        key={this.props.marker.index}
-        position={{ lat: this.props.marker.lat, lng: this.props.marker.lng}}
-        onClick={() => this.handleToggleOpen()}
-      >
+              {
+                this.state.isOpen &&
+                  <InfoWindow onCloseClick={this.handleToggleClose}>
+                    <div>
+                      <h1>{this.props.marker.song}</h1>
+                      <button onClick={()=>deleteMarker({variables:{id:this.props.marker.id}})}
+                        type="danger">Delete</button>
+                    </div>
+                  </InfoWindow>
+              }
 
-        {
-            this.state.isOpen &&
-              <InfoWindow onCloseClick={this.handleToggleClose}>
-                <div>
-                  <h1>{this.props.marker.song}</h1>
-                  <button onClick={()=>this.props.deleteMarker(this.props.marker.index)}
-                    type="danger">Delete</button>
-                </div>
-              </InfoWindow>
-        }
-
-        </Marker>
-
+            </Marker>)
+        }}
+      </Mutation>
 
     );
   }
