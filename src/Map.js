@@ -20,10 +20,7 @@ class Map extends Component {
     }
   }
 
-  onPlacesChanged() {
-    console.log("Hej monika", window);
 
-  }
   componentWillMount() {
     const refs = {}
 
@@ -65,7 +62,6 @@ class Map extends Component {
           center: nextCenter,
           markers: nextMarkers,
         });
-        refs.map.fitBounds(bounds);
       },
     })
   }
