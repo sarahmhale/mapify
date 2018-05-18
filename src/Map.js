@@ -34,10 +34,7 @@ class Map extends Component {
 
     this.setState({
       bounds: null,
-      center: {
-        lat: 41.9,
-        lng: -87.624
-      },
+      center: { lat: 63.82513386187522, lng: 20.264412622027862 },
       markers: [],
       onMapMounted: ref => {
         refs.map = ref;
@@ -114,11 +111,12 @@ class Map extends Component {
             <GoogleMap
               ref={this.state.onMapMounted}
               defaultZoom={8}
-              defaultCenter={{ lat: -34.397, lng: 150.644 }}
+              defaultCenter={{ lat: 63.82513386187522, lng: 20.264412622027862 }}
               center={this.state.center}
               onClick={(e)=>this.createMarker(e)}
-              onBoundsChanged={this.state.onBoundsChanged}
+              onDragEnd={this.state.onBoundsChanged}
             >
+
               <SearchBox
                 ref={this.state.onSearchBoxMounted}
                 bounds={this.state.bounds}
