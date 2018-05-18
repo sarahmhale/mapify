@@ -7,8 +7,6 @@ import {
 } from "react-google-maps";
 import './App.css';
 
-import { AddInfo } from './AddInfo'
-
 export class Markers extends Component {
 
   constructor(props) {
@@ -25,8 +23,10 @@ export class Markers extends Component {
     this.setState({
       isOpen: true
     });
-    this.props.handleSubmit(this.props.marker.song)
+    this.props.playSong(this.props.marker.song)
   }
+
+
 
   handleToggleClose = () => {
     this.setState({
@@ -46,13 +46,6 @@ export class Markers extends Component {
         onClick={() => this.handleToggleOpen()}
       >
 
-        {this.props.marker.song.length === 0?
-          <AddInfo
-            handleToggleOpen={this.handleToggleOpen}
-            setSong={this.setSong}
-            handleSubmit={this.props.handleSubmit}
-            handleChange={this.props.handleChange}
-          />: null}
         {
             this.state.isOpen &&
               <InfoWindow onCloseClick={this.handleToggleClose}>

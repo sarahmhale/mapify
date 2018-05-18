@@ -85,7 +85,6 @@ window.SpotifyPlayer = {
           'Authorization': 'Bearer ' + SpotifyPlayer.getAccessToken()
         })
       });
-
       return window.fetch(request).then((resp) => resp.json());
     },
     getPlaylist: (user_id, playlist_id) => {

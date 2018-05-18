@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
-  InfoWindow
+  InfoWindow,
+  Marker
 } from "react-google-maps";
 
 
@@ -9,6 +10,7 @@ export class AddInfo extends Component {
     super(props);
     this.state = {
       searchedSong: '',
+
     }
     this.handleChange = this.handleChange.bind(this);
 
@@ -17,33 +19,43 @@ export class AddInfo extends Component {
     this.setState({ searchedSong: event.target.value });
   }
 
+
+
   render() {
     return (
-      <InfoWindow >
-        <form onSubmit={(event)=>{
-          event.preventDefault()
-          this.props.handleSubmit(this.state.searchedSong)
-          this.props.setSong(this.state.searchedSong)
-          this.props.handleToggleOpen()
-        }
+      //TODO: mutation
+      //  <Mutation mutation={CREATE_MARKER}>
+      //  {(createMarker, { data,error }) => {
+      <Marker
+        position={{ lat: this.props.lat, lng: this.props.lng}}
+      >
+        <InfoWindow >
+          <form onSubmit={(event)=>{
+            event.preventDefault()
+            this.props.handleToggleOpen()
+            //createMarker(input: .....)
 
-
-        }>
-          <label>
-            Song:
+          }}>
+            <label>
+              Song:
+              <input
+                type="text"
+                name="name"
+                onChange={this.handleChange}
+              />
+            </label>
             <input
-              type="text"
-              name="name"
-              onChange={this.handleChange}
+              type="submit"
+              value="Submit"
             />
-          </label>
-          <input
-            type="submit"
-            value="Submit"
-          />
-        </form>
-      </InfoWindow>
+          </form>
+        </InfoWindow>
 
-    )
+        </Marker>
+        //   }}
+        //</Mutation>
+
+
+    );
   }
 }

@@ -10,19 +10,17 @@ class App extends Component {
       searchedSong: '',
       index: 1
     }
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
+    this.playSong = this.playSong.bind(this);
+    // this.handleClick = this.handleClick.bind(this);
     this.deleteMarker = this.deleteMarker.bind(this)
   }
 
 
 
-  handleSubmit(song) {
-
+  playSong(song) {
     window.SpotifyPlayer.searchTracks(song).then(res => {
       if (!res.tracks.items[0]) return;
-      song =res.tracks.items[0].name
       window.SpotifyPlayer.playTrack("spotify:track:" + res.tracks.items[0].id)
     });
 
@@ -35,26 +33,28 @@ class App extends Component {
     })
   }
 
-  handleClick(event) {
-    let lat = event.latLng.lat()
-    let lng = event.latLng.lng()
+  // handleClick(event) {
+  //   let lat = event.latLng.lat()
+  //   let lng = event.latLng.lng()
+  //
+  //   this.setState({
+  //     markers: [...this.state.markers, { lat: lat, lng: lng, song: '', index: this.state.index }]
+  //   })
+  //   this.setState({ index: this.state.index + 1 })
+  // }
 
-    this.setState({
-      markers: [...this.state.markers, { lat: lat, lng: lng, song: '', index: this.state.index }]
-    })
-    this.setState({ index: this.state.index + 1 })
-  }
-
-  handleChange(event) {
-    this.setState({ searchedSong: event.target.value });
-  }
+  // handleChange(event) {
+  //   this.setState({ searchedSong: event.target.value });
+  // }
 
   deleteMarker(index) {
-    let value = this.state.markers.findIndex(marker => marker.index == index)
-    this.setState((prevState) => ({
-      markers: [...prevState.markers.slice(0, value), ...prevState.markers.slice(value + 1)]
-    }))
-    this.pauseSong()
+    console.log("delete marker")
+    //TODO:mutaiton delete
+    // let value = this.state.markers.findIndex(marker => marker.index == index)
+    // this.setState((prevState) => ({
+    //   markers: [...prevState.markers.slice(0, value), ...prevState.markers.slice(value + 1)]
+    // }))
+    // this.pauseSong()
   }
   render() {
     return (
@@ -65,12 +65,12 @@ class App extends Component {
         </header>
         <MapWithAMarker
           deleteMarker={this.deleteMarker}
+          
+          // handleChange={this.handleChange}
+          // handleClick={this.handleClick}
           playSong={this.playSong}
-          handleChange={this.handleChange}
-          handleClick={this.handleClick}
-          handleSubmit={this.handleSubmit}
           googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=gometry,drawing,places"
-          markers={this.state.markers}
+          // markers={this.state.markers}
           loadingElement={<div style={{ height: `100%` }} />}
           containerElement={<div style={{ height: `80vh` }} />}
           mapElement={<div style={{ height: `100%` }} />}
