@@ -88,6 +88,7 @@ class Map extends Component {
 
           return (
             <Markers
+              deleteMarker={this.props.deleteMarker }
               handleSubmit={this.props.handleSubmit}
               handleChange={this.props.handleChange}
               marker={marker}

@@ -17,7 +17,7 @@ export class Markers extends Component {
     this.state = {
       isOpen: false
     }
-      this.setSong = this.setSong.bind(this);
+    this.setSong = this.setSong.bind(this);
 
   }
 
@@ -33,7 +33,7 @@ export class Markers extends Component {
       isOpen: false
     });
   }
-  setSong(songName){
+  setSong(songName) {
     this.props.marker.song = songName
   }
 
@@ -46,7 +46,6 @@ export class Markers extends Component {
         onClick={() => this.handleToggleOpen()}
       >
 
-
         {this.props.marker.song.length === 0?
           <AddInfo
             handleToggleOpen={this.handleToggleOpen}
@@ -57,7 +56,11 @@ export class Markers extends Component {
         {
             this.state.isOpen &&
               <InfoWindow onCloseClick={this.handleToggleClose}>
-                <h1>{this.props.marker.song}</h1>
+                <div>
+                  <h1>{this.props.marker.song}</h1>
+                  <button onClick={()=>this.props.deleteMarker(this.props.marker.index)}
+                    type="danger">Delete</button>
+                </div>
               </InfoWindow>
         }
 

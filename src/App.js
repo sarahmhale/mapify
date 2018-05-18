@@ -13,14 +13,16 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.deleteMarker = this.deleteMarker.bind(this)
   }
 
 
 
   handleSubmit(song) {
-    console.log(song)
+
     window.SpotifyPlayer.searchTracks(song).then(res => {
-    if(!res.tracks.items[0]) return;
+      if (!res.tracks.items[0]) return;
+      song =res.tracks.items[0].name
       window.SpotifyPlayer.playTrack("spotify:track:" + res.tracks.items[0].id)
     });
 
@@ -28,7 +30,9 @@ class App extends Component {
   }
 
   pauseSong() {
-    window.SpotifyPlayer.WebPlaybackSDK.pause()
+    window.SpotifyPlayer.WebPlaybackSDK.pause().then(() => {
+      console.log("paused")
+    })
   }
 
   handleClick(event) {
@@ -44,6 +48,14 @@ class App extends Component {
   handleChange(event) {
     this.setState({ searchedSong: event.target.value });
   }
+
+  deleteMarker(index) {
+    let value = this.state.markers.findIndex(marker => marker.index == index)
+    this.setState((prevState) => ({
+      markers: [...prevState.markers.slice(0, value), ...prevState.markers.slice(value + 1)]
+    }))
+    this.pauseSong()
+  }
   render() {
     return (
       <div className="App">
@@ -52,6 +64,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to Mapify</h1>
         </header>
         <MapWithAMarker
+          deleteMarker={this.deleteMarker}
           playSong={this.playSong}
           handleChange={this.handleChange}
           handleClick={this.handleClick}
