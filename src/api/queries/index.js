@@ -27,7 +27,8 @@ mutation createMarker($marker: MarkerInput!) {
 export const DELETE_MARKER = gql `
 mutation deleteMarker($id: Int!) {
   deleteMarker(id: $id) {
-    message
+    id
+
   }
 }
 `

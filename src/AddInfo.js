@@ -27,7 +27,7 @@ export class AddInfo extends Component {
     return (<Mutation mutation={CREATE_MARKER}
       update={(cache, { data: { createMarker } }) => {
         const {markers} = cache.readQuery({ query: GET_MARKERS });
-
+        
         cache.writeQuery({
             query: GET_MARKERS,
           data: { markers: markers.concat([createMarker.marker]) }

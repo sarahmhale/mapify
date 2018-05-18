@@ -82,9 +82,7 @@ class Map extends Component {
       return data.markers.map(marker => {
         return (
           <Markers
-            deleteMarker={this.props.deleteMarker }
-            playSong={this.props.playSong}
-            // handleChange={this.props.handleChange}
+            deleteMarker={this.props.deleteMarker}
             marker={marker}
           />
         )
