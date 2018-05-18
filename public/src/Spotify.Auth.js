@@ -18,7 +18,7 @@
 SpotifyPlayer.sendToLogin = () => {
   // Your Spotify Developer Application
   // Get at https://beta.developer.spotify.com/dashboard/
-  let client_id    = "3f693f552bd04f8596dd748f5fbe535c";
+  let client_id    = "1fd846846c504b04a44bd1a0f7448dac";
   let redirect_uri = "https://mapifymapify.firebaseapp.com";
 
   // You don't need to update these.
